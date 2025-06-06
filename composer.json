@@ -1,0 +1,21 @@
+{
+    "name": "fabym/painel-de-turmas",
+    "description": "Painel de Turmas para o curso de ",
+    "require": {
+    "php": ">=7.4"
+  },
+
+    "autoload": {
+    "psr-4": {
+        "App\\": "src/"
+    }
+    },
+
+    "authors": [
+        {
+            "name": "Fabiana emanuela",
+            "email": "fabymanuandremarcolino@gmail.com"
+        }
+    ]
+    
+}
