@@ -1,95 +1,26 @@
-    <div class="container-fluid">
-      <div class="row">
-         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
-        </li>
-      </ul>
+  <!-- <div class="sidebar">
+    <h4 class="fw-bold text-center">Administrativo de turmas</h4>
+    <hr />
+    <nav class="nav flex-column">
+      <a class="nav-link active" href="#"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+      <a class="nav-link" href="#"><i class="fa-solid fa-graduation-cap"></i> Alunos</a>
+      <a class="nav-link" href="#"><i class="fa-solid fa-users"></i> Turmas</a>
     </nav>
-          <div class="card border-primary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Cabeçalho</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title">Título de Card Primary</h5>
-    <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-  </div>
-</div>
-     </div>
+  </div> -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+      <div class="col-md-2 sidebar d-flex flex-column p-3">
+        <h5 class="mb-4">Dashboard</h5>
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Alunos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Turmas</a>
+          </li>
+        </ul>
+      </div>
+    <!-- Sidebar -->
     </div>
+</div>
