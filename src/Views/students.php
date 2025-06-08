@@ -10,9 +10,12 @@
         </a>
     </div>
 
-    <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Buscar por nome ...">
-    </div>
+ <div class="mb-3 d-flex align-items-center">
+  <input type="text" id="searchValue" class="form-control me-2" placeholder="🔍 Buscar turmas...">
+  <button type="submit" id="searchForm" class="btn btn-dark me-2">Buscar</button>
+  <button type="button" id="clearSearch" class="btn btn-outline-secondary">Limpar</button>
+</div>
+
 
     <div class="row g-3">
         <!-- Card 1 -->
@@ -28,16 +31,16 @@
                         <th class="text-end">Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id='resultsTable'>
                     <?php foreach($students as $student): ?>
-                        <tr>
+                        <tr >
                             <td><?php echo $student['name_student'] ?></td>
                             <td><?php echo $student['cpf'] ?></td>
                             <td><?php echo $student['email'] ?></td>
                            
                             <td><span class="badge bg-dark">Turma A - Matemática</span></td>
                             <td class="text-end">
-                                <a href="#" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-pencil-square"></i></a>
+                                <a href="/alunos-editar?id=<?php echo $student['id'] ?>" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-pencil-square"></i></a>
                                 <a href="#" 
                                     class="btn btn-outline-danger btn-sm" 
                                     data-bs-toggle="modal" 
@@ -75,7 +78,7 @@
     </div>
 
 </div>
-<!-- Modal Bootstrap -->
+
 
 
 
