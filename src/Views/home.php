@@ -1,6 +1,6 @@
 
 
-<?php echo'home';?>
+
   <!-- Conteúdo Principal -->
   <div class="content">
     <!-- Header -->
@@ -75,7 +75,7 @@
           <div class="text-primary fs-2 mb-2">➕</div>
           <h6>Cadastrar Aluno</h6>
           <p class="small text-muted">Adicionar novo aluno</p>
-          <a href="#" class="btn btn-dark btn-sm">Acessar</a>
+          <a href="/alunos-cadastros" class="btn btn-dark btn-sm">Acessar</a>
         </div>
       </div>
       <div class="col-md-3">
