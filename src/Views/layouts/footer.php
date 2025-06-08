@@ -16,5 +16,6 @@
   });
 </script>
    <script src="/assets/js/students.js"></script>
+     <script src="/assets/js/classes.js"></script>
 </body>
 </html>

@@ -54,43 +54,6 @@ $('#students-edit').on('submit', function(e) {
   })
   .catch(error => console.error('Erro:', error));
 });
-
-//FIM EDITAR
-//modal de exclusão
-  let selectedId = null;
-
-  const deleteModal = document.getElementById('confirmDeleteModal');
-  const confirmBtn = document.getElementById('confirmDeleteBtn');
-  const studentNameEl = document.getElementById('studentName');
-
-  deleteModal.addEventListener('show.bs.modal', function (event) {
-    const button = event.relatedTarget;
-    selectedId = button.getAttribute('data-id');
-    const studentName = button.getAttribute('data-studentName');
-    studentNameEl.textContent = studentName;
-  });
-
-  confirmBtn.addEventListener('click', function () {
-    fetch('/ajax/student_destroy.php', {
-      
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `id=${selectedId}`
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-     
-        const row = document.querySelector(`[data-id="${selectedId}"]`).closest('tr');
-        row.remove();
-        const modal = bootstrap.Modal.getInstance(deleteModal);
-        modal.hide();
-      } else {
-        alert(data.errors ? `Erro ao excluir aluno: ${data.errors}` : 'Erro ao excluir aluno.');
-      }
-    });
-  });
-//fim modal de exclusão
 //busca de alunos
   document.getElementById('searchForm').addEventListener('click', function(e) {  
   e.preventDefault();
@@ -115,19 +78,18 @@ console
           <td>${student.name_student}</td>
           <td>${student.cpf}</td>
           <td>${student.email}</td>
-          <td>${student.phone}</td>
           <td>
-            <a href="#" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-pencil-square"></i></a>
-                                <a href="#" 
-                                    class="btn btn-outline-danger btn-sm" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#confirmDeleteModal" 
-                                     data-studentName="${student.name_student}"
-                                  
-                                    data-id="${student.id}">
-                                   
-                                    <i class="bi bi-trash"></i>
-                                </a>
+           <a href="/alunos-editar?id=${student.id}" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-pencil-square"></i></a>
+            <a href="#" 
+                class="btn btn-outline-danger btn-sm" 
+                data-bs-toggle="modal" 
+                data-bs-target="#confirmDeleteModal" 
+                  data-studentName="${student.name_student}"
+              
+                data-id="${student.id}">
+                
+                <i class="bi bi-trash"></i>
+            </a>
           </td>`;
         resultsTable.appendChild(row);
       });

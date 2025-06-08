@@ -32,12 +32,13 @@ class Router{
     return  [
       'get' => [
           '/' =>  fn() => self::load('DashboardController','index'),
-           // '/alunos' =>  fn() => self::load('StudentsController', 'index'),  
            '/alunos' =>  fn() => self::load('StudentsController', 'index'),  
           '/alunos-cadastros' =>  fn() =>self::load('StudentsController', 'single'), 
           '/turmas' =>  fn() => self::load('ClassesController', 'index'), 
-           '/alunos-editar' =>  fn() => self::load('StudentsController', 'edit'), 
-          // '/alunos-editar' =>  fn() =>self::load('StudentsController', 'store'),
+          '/alunos-editar' =>  fn() => self::load('StudentsController', 'edit'), 
+          '/editar-turma' =>  fn() => self::load('ClassesController', 'edit'), 
+          '/cadastro-turmas' =>  fn() => self::load('ClassesController', 'single'),
+      
          
     
       ],

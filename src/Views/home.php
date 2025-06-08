@@ -17,7 +17,7 @@
 
     <!-- Cards Estatísticas -->
     <div class="row g-4 mb-4">
-      <div class="col-md-3">
+      <div class="col-md-6">
         <div class="card shadow-sm p-3">
           <div class="d-flex justify-content-between">
             <div>
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6">
         <div class="card shadow-sm p-3">
           <div class="d-flex justify-content-between">
             <div>
@@ -41,30 +41,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card shadow-sm p-3">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h6>Alunos em Turmas</h6>
-              <h3>0</h3>
-              <small>Alunos matriculados</small>
-            </div>
-            <div class="text-purple card-icon">📘</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card shadow-sm p-3">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h6>Alunos sem Turma</h6>
-              <h3>3</h3>
-              <small>Aguardando matrícula</small>
-            </div>
-            <div class="text-warning card-icon">📙</div>
-          </div>
-        </div>
-      </div>
+     
+    
     </div>
 
     <!-- Ações Rápidas -->
@@ -83,7 +61,7 @@
           <div class="text-success fs-2 mb-2">➕</div>
           <h6>Criar Turma</h6>
           <p class="small text-muted">Nova turma no sistema</p>
-          <a href="#" class="btn btn-dark btn-sm">Acessar</a>
+          <a href="/cadastro-turmas" class="btn btn-dark btn-sm">Acessar</a>
         </div>
       </div>
       <div class="col-md-3">

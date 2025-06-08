@@ -123,7 +123,7 @@ class Student
         }
     }
     public function destroy( $id ){
-        // $id = $_POST['id'] ?? '';
+       
         if (empty($id)) {
             echo json_encode([
                 'success' => false,
@@ -137,21 +137,21 @@ class Student
             $result = $stmt->execute([$id]);
             
             if ($result) {
-                echo json_encode([
+                return [
                     'success' => true,
                     'message' => 'Aluno excluído com sucesso!'
-                ]);
+                ];
             } else {
-                echo json_encode([
+                return [
                     'success' => false,
-                    'errors' => 'Erro ao excluir alunos'
-                ]);
+                    'errors' => 'Falha ao excluir o aluno.'
+                ];
             }
         } catch (PDOException $e) {
-            echo json_encode([
+            return [
                 'success' => false,
                 'errors' => $e->getMessage()
-            ]);
+            ];
         }
         
     }
@@ -172,5 +172,11 @@ class Student
             return false;
         }
     }
+    public function countAll()
+    {
+        $stmt = $this->pdo->query('SELECT COUNT(*) as total FROM classes');
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+   
  
 }
