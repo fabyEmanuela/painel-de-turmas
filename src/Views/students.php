@@ -27,7 +27,6 @@
                         <th>Nome</th>
                         <th>Cpf</th>
                         <th>Email</th>
-                        <th>Turma</th>
                         <th class="text-end">Ações</th>
                     </tr>
                 </thead>
@@ -38,7 +37,7 @@
                             <td><?php echo $student['cpf'] ?></td>
                             <td><?php echo $student['email'] ?></td>
                            
-                            <td><span class="badge bg-dark">Turma A - Matemática</span></td>
+                          
                             <td class="text-end">
                                 <a href="/alunos-editar?id=<?php echo $student['id'] ?>" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-pencil-square"></i></a>
                                 <a href="#" 
@@ -78,7 +77,7 @@
     </div>
 
 </div>
-
+<script src="/assets/js/modal.js"></script>
 
 
 
