@@ -4,7 +4,7 @@
     <nav class="nav flex-column">
       <a class="nav-link active" href="/"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
       <a class="nav-link" href="/alunos"><i class="fa-solid fa-graduation-cap"></i> Alunos</a>
-      <a class="nav-link" href="#"><i class="fa-solid fa-users"></i> Turmas</a>
+      <a class="nav-link" href="/turmas"><i class="fa-solid fa-users"></i> Turmas</a>
     </nav>
   </div>
 <!-- <div class="container-fluid">

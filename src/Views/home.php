@@ -22,7 +22,7 @@
           <div class="d-flex justify-content-between">
             <div>
               <h6>Total de Alunos</h6>
-              <h3>3</h3>
+              <h3><?php echo $sumStudent; ?></h3>
               <small>Alunos cadastrados</small>
             </div>
             <div class="text-primary card-icon">👨‍🎓</div>
@@ -34,7 +34,7 @@
           <div class="d-flex justify-content-between">
             <div>
               <h6>Total de Turmas</h6>
-              <h3>2</h3>
+              <h3><?php echo $sumClasses; ?></h3>
               <small>Turmas criadas</small>
             </div>
             <div class="text-success card-icon">👥</div>
@@ -91,7 +91,7 @@
           <div class="text-purple fs-2 mb-2">👨‍🎓</div>
           <h6>Ver Alunos</h6>
           <p class="small text-muted">Todos os alunos</p>
-          <a href="#" class="btn btn-dark btn-sm">Acessar</a>
+          <a href="/alunos" class="btn btn-dark btn-sm">Acessar</a>
         </div>
       </div>
       <div class="col-md-3">
@@ -99,35 +99,12 @@
           <div class="text-warning fs-2 mb-2">👥</div>
           <h6>Ver Turmas</h6>
           <p class="small text-muted">Todas as turmas</p>
-          <a href="#" class="btn btn-dark btn-sm">Acessar</a>
+          <a href="/turmas" class="btn btn-dark btn-sm">Acessar</a>
         </div>
       </div>
     </div>
 
-    <!-- Turmas Recentes -->
-    <h5 class="mb-3">Turmas Recentes</h5>
-    <div class="row g-3">
-      <div class="col-md-6">
-        <div class="card shadow-sm p-3 d-flex justify-content-between align-items-center">
-          <div>
-            <h6>Turma A - Matemática</h6>
-            <small>Turma de matemática básica</small><br />
-            <small>2 aluno(s)</small>
-          </div>
-          <a href="#" class="btn btn-outline-primary btn-sm">Ver Detalhes</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card shadow-sm p-3 d-flex justify-content-between align-items-center">
-          <div>
-            <h6>Turma B - Português</h6>
-            <small>Turma de português avançado</small><br />
-            <small>1 aluno(s)</small>
-          </div>
-          <a href="#" class="btn btn-outline-primary btn-sm">Ver Detalhes</a>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
 

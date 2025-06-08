@@ -35,8 +35,17 @@ class Router{
            // '/alunos' =>  fn() => self::load('StudentsController', 'index'),  
            '/alunos' =>  fn() => self::load('StudentsController', 'index'),  
           '/alunos-cadastros' =>  fn() =>self::load('StudentsController', 'single'), 
+          '/turmas' =>  fn() => self::load('ClassesController', 'index'), 
+           '/alunos-editar' =>  fn() => self::load('StudentsController', 'edit'), 
           // '/alunos-editar' =>  fn() =>self::load('StudentsController', 'store'),
+         
     
+      ],
+      
+      'post' => [
+        
+          '/alunos-destroy' =>  fn() => self::load('StudentsController', 'delete'),
+          '/alunos-search' =>  fn() => self::load('StudentsController', 'searchStudent'),
       ],
       
       
