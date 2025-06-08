@@ -19,80 +19,180 @@ class Classes
     public function validateForm($data)
     {
         $errors = [];
-        if (empty($data['name_student']) || strlen($data['name_student']) < 3) {
-            $errors[] = 'Nome inválido, deve conter no mínimo 3 caracteres';
+        if (empty($data['name_classes']) || strlen($data['name_classes']) < 3) {
+            $errors[] = 'Nome da turma inválido, deve conter no mínimo 3 caracteres';
         }
-        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $data['password_student'])) {
-             $errors[] = 'A senha deve ter no mínimo 8 caracteres, com pelo menos uma letra maiúscula, uma letra minúscula, um número e um símbolo.';
-        }
-        if (empty($data['cpf']) ||  strlen($data['cpf']) < 14) {
-            $errors[] = 'CPF inválido deve conter 11 dígitos';
-        } else {
-          
-            $stmt = $this->pdo->prepare('SELECT id FROM students WHERE cpf = ?');
-            $stmt->execute([$data['cpf']]);
-
-            if ($stmt->fetch()) {
-                $errors[] = 'CPF já cadastrado.';
-            }
-        }
-              
-
-       
+         if (empty($data['description'])) {
+            $errors[] = 'Campos descrição e obrigatorio';
+        }        
         return $errors;
              
     }
   
     public function getAll()
     {
-        $stmt = $this->pdo->query('SELECT * FROM classes ORDER BY name_classes ASC ');
-      
+        $sql = 'SELECT c.*, COUNT(sc.student_id) AS total_alunos
+            FROM classes c
+            LEFT JOIN students_classes sc ON sc.class_id = c.id
+            GROUP BY c.id
+            ORDER BY c.name_classes ASC';
+        $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getId($id){
 
-    // public function create($cpf,$name,$date_birth,$email,$password_student) 
-    // {
-    //     $password_hash = password_hash($password_student, PASSWORD_DEFAULT);
-
-    //     try {
-    //         $stmt = $this->pdo->prepare('INSERT INTO students (cpf, name_student, date_birth, email, password_student ) VALUES (?, ?, ?, ?, ?)');
-    //         return $stmt->execute([$cpf, $name, $date_birth, $email,$password_hash]);
-    //     } catch (PDOException $e) {
-    //         return false;
-    //     }
-    // }
-    // public function destroy( $id ){
-    //     // $id = $_POST['id'] ?? '';
-    //     if (empty($id)) {
-    //         echo json_encode([
-    //             'success' => false,
-    //             'errors' => 'ID inválido ou não informado'
-    //         ]);
-    //         return;
-    //     }
+        if (empty($id)) {
+            echo json_encode([
+                'success' => false,
+                'errors' => 'ID inválido ou não informado'
+            ]);
+            return;
+        }
         
-    //     try {
-    //         $stmt = $this->pdo->prepare('DELETE FROM students WHERE id = ?');
-    //         $result = $stmt->execute([$id]);
+         try {
+         $stmt = $this->pdo->prepare('SELECT * FROM classes WHERE id = ?');
+        $stmt->execute([$id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+           
+            return $result ;
+        } catch (PDOException $e) {
+            return false;
+        }
+
+    }
+
+    public function create($name_classes, $description)
+    {
+        try {
+            $stmt = $this->pdo->prepare('INSERT INTO classes (name_classes, description) VALUES (:name_classes, :description)');
+            $stmt->bindParam(':name_classes', $name_classes);
+            $stmt->bindParam(':description', $description);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+     public function getStudentsClasses($id){
+        if (empty($id)) {
+            echo json_encode([
+                'success' => false,
+                'errors' => 'ID inválido ou não informado'
+            ]);
+            return;
+        }
+        
+        try {
+            $stmt = $this->pdo->prepare('
+            SELECT s.*
+            FROM students_classes sc
+            INNER JOIN students s ON s.id = sc.student_id
+            WHERE sc.class_id = ?
+            ');
+            $stmt->execute([$id]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
+        }
+
+    }
+    public function getStudentsOff($id){
+        if (empty($id)) {
+            echo json_encode([
+                'success' => false,
+                'errors' => 'ID inválido ou não informado'
+            ]);
+            return;
+        }
+        
+        try {
+            $stmt = $this->pdo->prepare('
+            SELECT s.*
+            FROM students s
+            WHERE s.id NOT IN (
+                SELECT student_id FROM students_classes WHERE class_id = ?
+            )
+            ');
+            $stmt->execute([$id]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+     public function update($id, $name, $description,$students)
+    {
+        
+        try {
+            $stmt = $this->pdo->prepare('UPDATE classes SET name_classes = ?, description = ? WHERE id = ?');
+            $result = $stmt->execute([$name, $description, $id]);
+
+            if ($result && !empty($students)) {
+               
+                // $this->removeStudentsFromClass($id);
+              
+                return $this->addStudentsToClass($id, $students);
+            }
+            return $result;
+        } catch (PDOException $e) {
+            return false;
+   
+        }
+
+    
+}
+    public function addStudentsToClass($classId, $students)
+    {
+        try {
+            $stmt = $this->pdo->prepare('INSERT INTO students_classes (class_id, student_id) VALUES (?, ?)');
+            foreach ($students as $studentId) {
+                $stmt->execute([$classId, $studentId]);
+            }  
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }   
+    }
+    public function removeStudentsFromClass($classId)
+    {
+        try {
+            $stmt = $this->pdo->prepare('DELETE FROM students_classes WHERE class_id = ?');
+            return $stmt->execute([$classId]);
+        } catch (PDOException $e) {
+            return false;
+        }
+    } 
+     public function destroy( $id ){
+       
+        if (empty($id)) {
+            echo json_encode([
+                'success' => false,
+                'errors' => 'ID inválido ou não informado'
+            ]);
+            return;
+        }
+        
+        try {
+            $this->removeStudentsFromClass($id);
+            $stmt = $this->pdo->prepare('DELETE FROM classes WHERE id = ?');
+            $result = $stmt->execute([$id]);
             
-    //         if ($result) {
-    //             echo json_encode([
-    //                 'success' => true,
-    //                 'message' => 'Aluno excluído com sucesso!'
-    //             ]);
-    //         } else {
-    //             echo json_encode([
-    //                 'success' => false,
-    //                 'errors' => 'Erro ao excluir alunos'
-    //             ]);
-    //         }
-    //     } catch (PDOException $e) {
-    //         echo json_encode([
-    //             'success' => false,
-    //             'errors' => $e->getMessage()
-    //         ]);
-    //     }
+            if ($result) {
+                return [
+                    'success' => true,
+                    'message' => 'A Turma excluído com sucesso e a relacão de alunos tambem !'
+                ];
+            } else {
+                return [
+                    'success' => false,
+                    'errors' => 'Falha ao excluir o aluno.'
+                ];
+            }
+        } catch (PDOException $e) {
+            return [
+                'success' => false,
+                'errors' => $e->getMessage()
+            ];
+        }
         
-    // }
- 
+    }  
 }

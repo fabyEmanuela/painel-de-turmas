@@ -48,7 +48,7 @@ class StudentsController
              $result = $student->create($cpf,$name,$date_birth,$email,$password_student);
         echo json_encode([
             'success' => $result,
-            'errors' => $result ? 'Cadastro realizado com sucesso!' : 'Erro ao cadastrar'
+            'errors' => $result ? 'Cadastro realizado com sucesso!' : $result
         ]);
         }
     
@@ -89,7 +89,8 @@ class StudentsController
         $email = $_POST['email'] ?? '';
         $date_birth = $_POST['date_birth'] ?? '';
         $password_student =  $_POST['password'] ?? '';
-        $form =  $_POST['formType'] ?? 'create';
+        // $form =  $_POST['formType'] = 'edit';
+        $form = 'edit';
         if( empty($id)){
             echo json_encode([
                 'success' => false,
@@ -110,6 +111,8 @@ class StudentsController
      
 
         $student = new Student();
+        // $errors = $student->validateForm($data);
+        
         $errors = $student->validateForm($data);
         if (!empty($errors)) {
             echo json_encode([
@@ -155,5 +158,6 @@ class StudentsController
           
 
     }
+    
     
 }
