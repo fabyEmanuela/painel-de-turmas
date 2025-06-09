@@ -28,7 +28,7 @@
 
 5. **Configuração adicional**
     - Caso necessário, configure variáveis de ambiente ou arquivos de configuração conforme instruções do projeto.
-6. **Para gerar Cpf para teste use o site a baico
+6. **Para gerar Cpf para teste use o site a baixo
    -https://www.4devs.com.br/gerador_de_cpf
 
 
