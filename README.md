@@ -17,8 +17,7 @@
       ```
 3. **Banco de dados **
    -Para replicar o banco de dados, utilize o arquivo dump.sql e importe-o para um banco chamado fiap_project em sua instância local.
-   -Você pode clonar o banco de dados importando o arquivo dump.sql em um banco de dados chamado fiap_project. Use uma ferramenta como phpMyAdmin, DBeaver ou o terminal MySQL para realizar a importação.
-   -e necessario colocar as confirguração  com senha e nome do banco nas respectivas model
+   -E necessario colocar as confirguração  com senha e nome do banco nas respectivas models
 4. **Executando o servidor local**
     - Utilize o servidor embutido do PHP:
       ```bash
