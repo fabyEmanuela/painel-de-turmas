@@ -24,11 +24,7 @@ class Classes
         }
          if (empty($data['description'])) {
             $errors[] = 'Campos descrição e obrigatorio';
-        }
-       
-              
-
-       
+        }        
         return $errors;
              
     }

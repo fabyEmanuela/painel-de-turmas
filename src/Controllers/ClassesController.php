@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\Classes;
 use App\Models\Student;
+use App\Validators\FormValidateStudents;
+
 require_once __DIR__ . '/../helpers/view.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
 class ClassesController{
@@ -114,4 +116,7 @@ class ClassesController{
         ]);
     }
 
+    public function deleteRelation(){
+      
+    }
 }

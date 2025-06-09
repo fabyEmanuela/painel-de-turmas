@@ -33,7 +33,7 @@ e.preventDefault();
 $('#classes-edit').on('submit', function(e){
    e.preventDefault();
    
-e.preventDefault();
+
   const formData = new FormData(this);
   fetch('/ajax/classe_edit.php', {
     method: 'POST',
@@ -42,21 +42,27 @@ e.preventDefault();
   .then(res => res.json())
   .then(data => {
     const result = document.getElementById('result');
+   
     result.textContent = data.errors;
     result.style.display = 'block';
     result.style.backgroundColor = '#ed145b';
     result.style.color = 'white'; 
     result.style.padding = '10px';
     result.style.borderRadius = '5px';
+  
 
-
-    setTimeout(() => {
-      result.style.display = 'none';
-    }, 9000);
+    
     if (data.success) {
-      this.reset();
+      // this.reset();
+      setTimeout(() => {
+      result.style.display = 'none';
+     
+      location.reload();
+    }, 2000);
     
     }
+
+    
   })
   .catch(error => console.error('Erro:', error));
 });

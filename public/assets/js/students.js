@@ -48,7 +48,7 @@ $('#students-edit').on('submit', function(e) {
       result.style.display = 'none';
     }, 9000);
     if (data.success) {
-      this.reset();
+
     
     }
   })
